@@ -171,6 +171,50 @@ namespace Life
                 em.Draw(gp);
                 this.Invalidate();
             }
+            else if (e.KeyCode==Keys.Left)
+            {
+                if (is_start)
+                {
+                    is_start = false;
+                    thread_run.Abort();
+                }
+                em.MoveLeft();
+                em.Draw(gp);
+                this.Invalidate();
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                if (is_start)
+                {
+                    is_start = false;
+                    thread_run.Abort();
+                }
+                em.MoveRight();
+                em.Draw(gp);
+                this.Invalidate();
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                if (is_start)
+                {
+                    is_start = false;
+                    thread_run.Abort();
+                }
+                em.MoveUp();
+                em.Draw(gp);
+                this.Invalidate();
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                if (is_start)
+                {
+                    is_start = false;
+                    thread_run.Abort();
+                }
+                em.MoveDown();
+                em.Draw(gp);
+                this.Invalidate();
+            }
         }
         private void Run()
         {
@@ -210,7 +254,7 @@ namespace Life
                 is_start = false;
                 thread_run.Abort();
             }
-           
+            
         }
 
         void InitView()
@@ -234,6 +278,10 @@ namespace Life
             {
                 is_start = false;
                 thread_run.Abort();
+            }
+            if (WindowState == FormWindowState.Maximized)
+            {
+                InitView();
             }
             
         }

@@ -149,6 +149,70 @@ namespace Life
                 }
             }
         }
+        public void MoveLeft()
+        {
+            bool[] col = new bool[size_h];
+            for (int i = 0; i < size_h; i++)
+            {
+                col[i] = entitys[0, i].is_alive;
+            }
+            for (int i = 0; i < size_w; i++)
+            {
+                for (int j = 0; j < size_h; j++)
+                {
+                    if (i < size_w - 1) entitys[i, j].is_alive = entitys[i+1,j].is_alive;
+                    else entitys[i,j].is_alive = col[j];
+                }
+            }
+        }
+        public void MoveRight()
+        {
+            bool[] col = new bool[size_h];
+            for (int i = 0; i < size_h; i++)
+            {
+                col[i] = entitys[size_w - 1, i].is_alive;
+            }
+            for (int i = size_w-1; i >=0; i--)
+            {
+                for (int j = 0; j < size_h; j++)
+                {
+                    if(i>0) entitys[i, j].is_alive = entitys[i - 1, j].is_alive; 
+                    else entitys[i, j].is_alive = col[j];
+                }
+            }
+        }
+        public void MoveUp()
+        {
+            bool[] row = new bool[size_w];
+            for (int i = 0; i < size_w; i++)
+            {
+                row[i] = entitys[i,0].is_alive;
+            }
+            for (int i = 0; i < size_h; i++)
+            {
+                for (int j = 0; j < size_w; j++)
+                {
+                    if (i == size_h - 1) entitys[j, i].is_alive = row[j];
+                    else entitys[j, i].is_alive = entitys[j, i+1].is_alive;
+                }
+            }
+        }
+        public void MoveDown()
+        {
+            bool[] row = new bool[size_w];
+            for (int i = 0; i < size_w; i++)
+            {
+                row[i] = entitys[i, size_h-1].is_alive;
+            }
+            for (int i = size_h - 1; i >= 0; i--)
+            {
+                for (int j = 0; j < size_w; j++)
+                {
+                    if (i > 0) entitys[j, i].is_alive = entitys[j, i - 1].is_alive;
+                    else entitys[j, i].is_alive = row[j];
+                }
+            }
+        }
         public void CopyFrom(EntityMatrix em)
         {
             this.width = em.Width;
